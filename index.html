@@ -1,1 +1,179 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Петра — лапша богов</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      background: white;
+    }
+
+    header {
+      position: relative;
+    }
+
+    .menu-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 11;
+    }
+
+    .menu-button div {
+      height: 4px;
+      background: black;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: black;
+      color: white;
+      padding: 60px 20px;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      z-index: 10;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+
+    .content {
+      padding: 100px 20px 40px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .content img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto 30px;
+    }
+
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 200px;
+      cursor: pointer;
+      border: 2px solid #ddd;
+      transition: 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      border-color: #8b0000;
+    }
+
+    #lightbox {
+      position: fixed;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 999;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    #lightbox:target {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="menu-button" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav class="sidebar" id="sidebar">
+    <a href="#home">Главная</a>
+    <a href="#gallery">Галерея с Петрой</a>
+    <a href="#">Петра-Мамапорно</a>
+  </nav>
+</header>
+
+<main class="content" id="home">
+  <img src="images/petra-1.jpg" alt="Петры дошик">
+  <h1>Петра — удивительное сокровище из КБ и Фикспрайса</h1>
+  <p>Это является довольно хорошим продуктом потому что в петре содержится: соус, упаковка с лого Петра и дошик.</p>
+  <p>Почему это боготворят? Потому что Петра — это не только съедобное.</p>
+  <p>У Петры на данный момент 3 величайших блюда, а именно: лапша со вкусом курицы, лапша со вкусом говядины и лапша со вкусом харчка верблюда.</p>
+</main>
+
+<section class="content" id="gallery">
+  <h1>Галерея изображений с Петрой</h1>
+  <div class="gallery">
+    <a href="#img1"><img src="images/petra-1.jpg" alt="Картинка Петры" /></a>
+    <a href="#img2"><img src="images/petra-2.jpg" alt="Картинка Петры" /></a>
+    <a href="#img3"><img src="images/petra-3.jpg" alt="Картинка Петры" /></a>
+    <a href="#img4"><img src="images/petra-4.jpg" alt="Картинка Петры" /></a>
+  </div>
+</section>
+
+<div id="lightbox">
+  <a href="#"><img id="lightbox-img" src="" alt="Изображение в лайтбоксе" /></a>
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  document.querySelectorAll('.gallery a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const src = this.querySelector('img').src;
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('lightbox').addEventListener('click', function() {
+    this.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
