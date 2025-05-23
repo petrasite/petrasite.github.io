@@ -73,23 +73,25 @@
       padding: 10px 15px;
       cursor: pointer;
     }
-
 .store {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* центрируем карточки */
-  gap: 20px;               /* расстояние между карточками */
+  justify-content: center;      /* центрируем всё */
+  gap: 20px;                    /* промежуток между карточками */
+  max-width: 1200px;            /* ограничиваем ширину */
+  margin: 0 auto;               /* центрируем сам блок */
   padding: 20px;
-  max-width: 1200px;       /* ограничим ширину */
-  margin: auto;            /* чтобы отцентровать */
+  box-sizing: border-box;
 }
 
-    .product {
-      border: 2px solid #ccc;
-      padding: 15px;
-      width: 220px;
-      text-align: center;
-    }
+.product {
+  flex: 0 0 220px;              /* фиксируем ширину карточки */
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  padding: 15px;
+  text-align: center;
+}
+
 
     .product img {
       width: 100%;
