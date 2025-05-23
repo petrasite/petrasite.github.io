@@ -63,6 +63,17 @@
       margin-top: 80px;
     }
 
+    .cart-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
     .store {
       display: flex;
       flex-wrap: wrap;
@@ -95,6 +106,35 @@
     .product button:hover {
       background: darkred;
     }
+
+    #cartModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #cartModalContent {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 320px;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+
+    #cartList {
+      margin-bottom: 15px;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0;
+    }
   </style>
 </head>
 <body>
@@ -105,6 +145,7 @@
     <div></div>
     <div></div>
   </div>
+  <button class="cart-button" onclick="openCart()">🛒 Корзина (<span id="cartCount">0</span>)</button>
   <nav class="sidebar" id="sidebar">
     <a href="index.html#home">Главная</a>
     <a href="index.html#gallery">Галерея</a>
@@ -115,37 +156,81 @@
 </header>
 
 <main>
-  <h1>🛍 Магазин Петры</h1>
+  <h1>Магазин Петры</h1>
 
   <div class="store">
     <div class="product">
       <img src="images/petra-1.jpg" alt="Петра курица">
       <p><strong>Петра (курица)</strong></p>
-      <p>69₽</p>
-      <button onclick="buy('Петра курица')">Купить</button>
+      <p>11₽</p>
+      <button onclick="addToCart('Петра (курица)', 69)">Купить</button>
     </div>
     <div class="product">
       <img src="images/petra-1.jpg" alt="Петра говядина">
       <p><strong>Петра (говядина)</strong></p>
-      <p>79₽</p>
-      <button onclick="buy('Петра говядина')">Купить</button>
+      <p>11₽</p>
+      <button onclick="addToCart('Петра (говядина)', 79)">Купить</button>
     </div>
     <div class="product">
-      <img src="images/petra-10.jpg" alt="Петра харчок">
+      <img src="images/petra-3.jpg" alt="Петра харчок">
       <p><strong>Петра (харчок верблюда)</strong></p>
-      <p>9999999₽</p>
-      <button onclick="buy('Петра харчок')">Купить</button>
+      <p>999999999₽</p>
+      <button onclick="addToCart('Петра (харчок верблюда)', 99)">Купить</button>
     </div>
   </div>
 </main>
 
+<!-- Модальное окно корзины -->
+<div id="cartModal">
+  <div id="cartModalContent">
+    <h2>Ваша корзина</h2>
+    <div id="cartList"></div>
+    <p><strong>Итого: <span id="totalPrice">0</span>₽</strong></p>
+    <button onclick="completeCartPayment()">Оплатить всё</button>
+    <button onclick="closeCart()" style="margin-top:10px; background:gray;">Закрыть</button>
+  </div>
+</div>
+
 <script>
+  let cart = [];
+
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
   }
 
-  function buy(item) {
-    alert("Вы выбрали: " + item + " (оплата не подключена)");
+  function addToCart(item, price) {
+    cart.push({ name: item, price: price });
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    document.getElementById('cartCount').innerText = cart.length;
+  }
+
+  function openCart() {
+    const list = document.getElementById('cartList');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach(entry => {
+      total += entry.price;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerText = `${entry.name} — ${entry.price}₽`;
+      list.appendChild(div);
+    });
+    document.getElementById('totalPrice').innerText = total;
+    document.getElementById('cartModal').style.display = 'flex';
+  }
+
+  function closeCart() {
+    document.getElementById('cartModal').style.display = 'none';
+  }
+
+  function completeCartPayment() {
+    alert("Оплата прошла успешно! (пример)");
+    cart = [];
+    updateCartUI();
+    closeCart();
   }
 </script>
 
