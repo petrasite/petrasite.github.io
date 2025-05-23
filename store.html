@@ -76,20 +76,26 @@
 .store {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;      /* центрируем всё */
-  gap: 20px;                    /* промежуток между карточками */
-  max-width: 1200px;            /* ограничиваем ширину */
-  margin: 0 auto;               /* центрируем сам блок */
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .product {
-  flex: 0 0 220px;              /* фиксируем ширину карточки */
-  box-sizing: border-box;
+  width: 220px; /* фиксированная ширина */
   border: 2px solid #ccc;
   padding: 15px;
   text-align: center;
+  box-sizing: border-box;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.03);
 }
 
 
