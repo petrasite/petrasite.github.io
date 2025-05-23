@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Магазин Петры</title>
+  <style>
+    body {
+      font-family: monospace;
+      margin: 0;
+      padding: 20px;
+      background: white;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .store {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .product {
+      border: 2px solid #ccc;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+    }
+
+    .product button {
+      margin-top: 10px;
+      padding: 10px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Магазин Петры</h1>
+
+  <div class="store">
+    <div class="product">
+      <img src="images/petra-1.jpg" alt="Петра курица">
+      <p><strong>Петра (курица)</strong></p>
+      <p>69₽</p>
+      <button onclick="buy('Петра курица')">Купить</button>
+    </div>
+    <div class="product">
+      <img src="images/petra-1.jpg" alt="Петра говядина">
+      <p><strong>Петра (говядина)</strong></p>
+      <p>79₽</p>
+      <button onclick="buy('Петра говядина')">Купить</button>
+    </div>
+    <div class="product">
+      <img src="images/petra-10.jpg" alt="Петра харчок">
+      <p><strong>Петра (харчок верблюда)</strong></p>
+      <p>99₽</p>
+      <button onclick="buy('Петра харчок')">Купить</button>
+    </div>
+  </div>
+
+  <script>
+    function buy(item) {
+      alert("Вы выбрали: " + item + " (оплата не подключена)");
+    }
+  </script>
+
+</body>
+</html>
