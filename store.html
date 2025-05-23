@@ -73,30 +73,35 @@
       padding: 10px 15px;
       cursor: pointer;
     }
-.store {
+
+    .store {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
+  background: #f8f8f8;
 }
 
 .product {
-  width: 220px; /* фиксированная ширина */
+  width: 220px;
+  min-height: 280px;
+  background: white;
   border: 2px solid #ccc;
+  border-radius: 6px;
   padding: 15px;
-  text-align: center;
   box-sizing: border-box;
-  background: #fff;
+  text-align: center;
   transition: transform 0.2s;
 }
 
 .product:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
+
 
 
     .product img {
